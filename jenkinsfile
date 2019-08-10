@@ -10,6 +10,10 @@ node {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/mvpkeydown/Hello-World.git']]])
     }
  
+    stage('mvn package') {
+        sh "mvn package"
+    }
+ 
     // stage('mvn test') {
     //     sh "mvn test"
     // }
