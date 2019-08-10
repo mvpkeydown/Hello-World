@@ -10,10 +10,6 @@ node {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/mvpkeydown/Hello-World.git']]])
     }
  
-    stage('mvn package') {
-        sh "mvn package"
-    }
- 
     // stage('mvn test') {
     //     sh "mvn test"
     // }
@@ -24,7 +20,7 @@ node {
  
     stage('depoly') {
         sh 'sshpass -p  ' + HOST_PWD + ' ssh  -o StrictHostKeyChecking=no ' + HOST_USERNAME + '@' + HOST_NAME + ' ls'
-        sh 'sshpass -p  ' + HOST_PWD + ' scp  -o StrictHostKeyChecking=no  target/*.jar ' + HOST_USERNAME + '@' + HOST_NAME + ':/export/deploy/'
+        sh 'sshpass -p  ' + HOST_PWD + ' scp  -o StrictHostKeyChecking=no  ./README.md' + HOST_USERNAME + '@' + HOST_NAME + ':/export/deploy/'
         echo 'haha'
     }
     //    -p:指定ssh的密码
